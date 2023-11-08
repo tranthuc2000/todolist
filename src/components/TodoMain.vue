@@ -40,77 +40,41 @@ const handleReset = (value) => {
 }
 </script>
 <template>
-    <div class="all">
-        <div class="container" v-show="!isEdit">
-            <div class="title" @click="link = 'all'" :class="{ 'active': link === 'all' }">{{ title.all }}</div>
-            <div class="title" @click="link = 'completed'" :class="{ 'active': link === 'completed' }">{{ title.complete }}</div>
-            <div class="title" @click="link = 'ongoing'" :class="{ 'active': link === 'ongoing' }">{{ title.ongoing }}</div>
+    <div >
+        <div class="flex justify-between m-6" v-show="!isEdit">
+            <div class="flex-initial mx-4" @click="link = 'all'" :class="{ 'active': link === 'all' }">{{ title.all }}</div>
+            <div class="flex-initial mx-4" @click="link = 'completed'" :class="{ 'active': link === 'completed' }">{{ title.complete }}</div>
+            <div class="flex-initial mx-4" @click="link = 'ongoing'" :class="{ 'active': link === 'ongoing' }">{{ title.ongoing }}</div>
         </div>
-        <div v-if = "!isEdit">
-            <div class="main" v-if="link === 'all'">
+        <div v-if = "!isEdit" >
+            <div  v-if="link === 'all'">
                 <ul>
-                    <li v-for="item in props.content" :key="item.id" class="item">
+                    <li v-for="item in props.content" :key="item.id" class="m-4">
                         <TodoItem :content="item" @update="handleIsDone" @delete="handleDel" @edit ="handleEdit" />
                     </li>
                 </ul>
             </div>
-            <div class="main" v-else-if="link === 'completed'">
+            <div  v-else-if="link === 'completed'">
                 <ul>
                     <template v-for="item in props.content" :key="item.id">
-                        <li v-if="item.isDone" class="item">
+                        <li v-if="item.isDone" class="m-4">
                             <TodoItem :content="item" @update="handleIsDone" @delete="handleDel" @edit ="handleEdit" />
                         </li>
                     </template>
                 </ul>
             </div>
-            <div class="main" v-else="link === 'ongoing' ">
+            <div  v-else="link === 'ongoing' ">
                 <ul>
                     <template v-for="item in props.content" :key="item.id">
-                        <li v-if="!item.isDone" class="item">
+                        <li v-if="!item.isDone" class="m-4">
                             <TodoItem :content="item" @update="handleIsDone" @delete="handleDel" @edit ="handleEdit"/>
                         </li>
                     </template>
                 </ul>
             </div>
         </div>
-        <div v-if="isEdit">
+    </div>
+    <div v-if="isEdit" class="w-4/5 flex justify-center">
             <NewFile :inputValue="inputValue" :textValue="textValue" :id="id" @update="handleReset"/>
         </div>
-
-    </div>
 </template>
-<style scoped>
-.item{
-    padding: 0px 10px;
-}
-.active {
-    text-decoration: underline;
-}
-
-.all {
-    width: 600px;
-}
-
-.main {
-    margin: auto;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    margin: 15px auto;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.title {
-    font-size: medium;
-}
-</style>

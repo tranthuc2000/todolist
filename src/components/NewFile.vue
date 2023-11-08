@@ -31,53 +31,15 @@ const updateValue = () => {
 }
 </script>
 <template >
-    <div class="newfile">
-        <div class="title">
+    <div class="bg-gray-100 w-3/5  ">
+        <div class="m-4 text-lg">
             Title
-        </div>
-        <input type="text" v-model="inputValue" required>
-        <div class="title">
+        </div >
+        <input  class="ml-4 h-10 w-4/5" type="text" v-model="inputValue" required>
+        <div class="m-4 text-lg">
             Details
         </div>
-        <textarea v-model="textValue" required></textarea>
-        <div class="add"><button @click="updateValue">Add Project</button> </div>
+        <textarea class="ml-4 h-40 w-4/5"  v-model="textValue" required></textarea>
+        <button class="flex justify-center mx-auto my-2 bg-green-500 w-32 h-10 py-2 border border-gray-300 rounded" @click="updateValue">Add Project</button> 
     </div>
 </template>
-<style>
-.title {
-    padding: 10px;
-    font-size: 20px;
-}
-
-.newfile {
-    
-    width: 600px;
-    border-radius: 3px;
-    background-color: aliceblue;
-}
-
-input {
-    margin: 0px 40px;
-    width: 460px;
-    height: 30px;
-}
-
-textarea {
-    margin: 0px 40px;
-    width: 460px;
-    height: 100px
-}
-
-.add {
-    text-align: center;
-
-}
-
-button {
-    margin: 20px;
-    height: 30px;
-    border: 3px;
-    border-radius: 3px;
-    color: white;
-    background-color: green;
-}</style>

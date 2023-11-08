@@ -47,7 +47,7 @@ const handleUpdateTodo = (val) => {
 const handleEditTask = (value) => {
     console.log(value)
     todoContent.value.forEach((val) => {
-        if(value.id === val.id){
+        if (value.id === val.id) {
             val.content = value.content
             val.title = value.title
         }
@@ -56,51 +56,20 @@ const handleEditTask = (value) => {
 }
 </script>
 <template>
-    <div class="container">
-        <div class="header">
-            <span class="project" @click="isCreate = false" :class="{ 'active': !isCreate }">Project</span>
-            <span class="add" @click="isCreate = true" :class="{ 'active': isCreate }">Add New Project</span>
+    <div class=" flex justify-center items-center ">
+        <div class=" flex justify-center p-4">
+            <span class="border-r-4 border-gray-800 pr-4 text-xl " @click="isCreate = false"
+                :class="{ 'active': !isCreate }">Project</span>
+            <span class=" pl-4 text-xl " @click="isCreate = true" :class="{ 'active': isCreate }">Add New Project</span>
         </div>
-        <div v-if="!isCreate">
-            <TodoMain :content="todoContent" @updateIsDone="handleUpdate" @delete="handleDelete" @editTask="handleEditTask"/>
-        </div>
+    </div>
+    <div v-if="!isCreate" class="flex justify-center ">
+        <TodoMain :content="todoContent" @updateIsDone="handleUpdate" @delete="handleDelete" @editTask="handleEditTask" />
+    </div>
 
-        <div v-if="isCreate">
-            <NewFile @update="handleUpdateTodo"  />
-        </div>
+    <div v-if="isCreate" class="flex justify-center ">
+        <NewFile @update="handleUpdateTodo" />
     </div>
 </template>
 
     
-<style scoped>
-.active {
-    text-decoration: underline;
-    color: blueviolet;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   
-    margin: auto;
-}
-
-.header {
-    font-size: x-large;
-    text-align: center;
-    color: black
-}
-
-.project {
-
-    padding: 0px 10px;
-    border-right: 3px solid black;
-}
-
-.add {
-    padding: 0px 10px;
-
-}
-</style>
